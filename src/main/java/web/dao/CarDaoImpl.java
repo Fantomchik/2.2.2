@@ -17,11 +17,11 @@ public class CarDaoImpl implements CarDao {
     @Override
     public List<Car> listCars() {
         List<Car> cars = new ArrayList<>();
-        cars.add(new Car("Toyota", "Supra", 1500));
-        cars.add(new Car("Subaru", "Impreza", 300));
-        cars.add(new Car("Nissan", "Skyline", 500));
-        cars.add(new Car("Nissan", "370z", 400));
-        cars.add(new Car("Porsche", "911", 420));
+//        cars.add(new Car("Toyota", "Supra", 1500));
+//        cars.add(new Car("Subaru", "Impreza", 300));
+//        cars.add(new Car("Nissan", "Skyline", 500));
+//        cars.add(new Car("Nissan", "370z", 400));
+//        cars.add(new Car("Porsche", "911", 420));
         return cars;
     }
 }

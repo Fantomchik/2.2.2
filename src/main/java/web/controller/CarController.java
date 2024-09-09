@@ -14,19 +14,9 @@ public class CarController {
 
     @GetMapping("cars")
     public String printCarTable(ModelMap model, @RequestParam(value = "count", required = false) String strCount) {
-        List<Car> cars = new CarServiceImpl().listCars();
-        if(strCount == null){
-            model.addAttribute("table", cars);
-        }
-        else {
-            int count = Integer.parseInt(strCount);
-            if(count<5){
-                model.addAttribute("table", cars.subList(0, count));
-            } else {
-                model.addAttribute("table", cars);
-            }
 
-        }
+        model.addAttribute("table", CarServiceImpl.outWithParam(strCount));
+
         return "cars";
     }
 }

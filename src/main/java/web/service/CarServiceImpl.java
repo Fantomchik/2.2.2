@@ -12,13 +12,13 @@ import java.util.List;
 @Service
 public class CarServiceImpl implements CarService{
 
-    @Autowired
-    private CarDao carDao;
+//    @Autowired
+//    private CarDao carDao;
 
     //@Transactional
     @Override
     public void addCar(Car car) {
-        carDao.addCar(car);
+//        carDao.addCar(car);
     }
 
     //@Transactional()
@@ -31,5 +31,21 @@ public class CarServiceImpl implements CarService{
         cars.add(new Car("Nissan", "370z", 400));
         cars.add(new Car("Porsche", "911", 420));
         return cars;
+    }
+
+    public static List<Car> outWithParam(String strCount){
+        List<Car> cars = new CarServiceImpl().listCars();
+        if(strCount == null){
+            return cars;
+        }
+        else {
+            int count = Integer.parseInt(strCount);
+            if(count<5){
+                return cars.subList(0, count);
+            } else {
+                return cars;
+            }
+
+        }
     }
 }
