@@ -1,48 +1,38 @@
 package web.service;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 import web.model.Car;
+
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
-@Service
+@Component
 public class CarServiceImpl implements CarService{
 
-//    @Autowired
-//    private CarDao carDao;
 
-    //@Transactional
-    @Override
-    public void addCar(Car car) {
-//        carDao.addCar(car);
-    }
+    private List<Car> cars;
 
-    //@Transactional()
-    @Override
-    public List<Car> listCars() {
-        List<Car> cars = new ArrayList<>();
+    public CarServiceImpl() {
+        cars = new ArrayList<>();
         cars.add(new Car("Toyota", "Supra", 1500));
         cars.add(new Car("Subaru", "Impreza", 300));
         cars.add(new Car("Nissan", "Skyline", 500));
         cars.add(new Car("Nissan", "370z", 400));
         cars.add(new Car("Porsche", "911", 420));
-        return cars;
     }
 
-    public static List<Car> outWithParam(String strCount){
-        List<Car> cars = new CarServiceImpl().listCars();
-        if(strCount == null){
-            return cars;
-        }
-        else {
-            int count = Integer.parseInt(strCount);
-            if(count<5){
-                return cars.subList(0, count);
-            } else {
-                return cars;
-            }
+    public List<Car> outWithParam(Integer count){
 
+        if (count == null || count >= 5) {
+            return cars;
+        } else if (count == 0) {
+            throw new IllegalArgumentException("Count cannot be negative.");
+        } else {
+            return cars.stream()
+                    .limit(count)
+                    .collect(Collectors.toList());
         }
     }
 }
